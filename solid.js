@@ -1,5 +1,4 @@
-// You can find the basic Solid concepts explained in the Glossary.md file, inline comments talk about
-// the specifics of how this application is implemented.
+// we will study sincerely
 
 let user, tasksContainerUrl;
 
