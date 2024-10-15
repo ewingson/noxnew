@@ -1,6 +1,6 @@
 // we will study sincerely
 
-let user, tasksContainerUrl;
+let user, bookmarksContainerUrl, bookmark, i;
 
 async function restoreSession() {
     // This function uses Inrupt's authentication library to restore a previous session. If you were
@@ -60,7 +60,7 @@ function performLogin(loginUrl) {
 async function performLogout() {
     await solidClientAuthentication.logout();
 }
-
+/*
 async function performTaskCreation(description) {
     // Data discovery mechanisms are still being defined in Solid, but so far it is clear that
     // applications should not hard-code the url of their containers like we are doing in this
@@ -163,7 +163,7 @@ async function loadTasks() {
     }
 
     return tasks;
-}
+} */
 
 async function readSolidDocument(url) {
     try {
@@ -206,14 +206,14 @@ async function updateSolidDocument(url, update) {
     if (!isSuccessfulStatusCode(response.status))
         throw new Error(`Failed updating document at ${url}, returned status ${response.status}`);
 }
-
+/*
 async function deleteSolidDocument(url) {
     const response = await solidClientAuthentication.fetch(url, { method: 'DELETE' });
 
     if (!isSuccessfulStatusCode(response.status))
         throw new Error(`Failed deleting document at ${url}, returned status ${response.status}`);
 }
-
+*/
 async function createSolidContainer(url, name) {
     const response = await solidClientAuthentication.fetch(url, {
         method: 'POST',
