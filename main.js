@@ -58,11 +58,12 @@ function appendTaskItem(task) {
             ${task.done ? 'Undo' : 'Complete'}
         </button>
         <span>${task.description}</span>
-    `;
+    `;*/
 
-    document.getElementById('tasks').appendChild(taskItem);
+function display(bookmark) {
+    document.getElementById('items').appendChild(bookmark);
 }
-*/
+
 // ------------------------------------------------------------------
 
 main();
