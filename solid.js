@@ -60,6 +60,12 @@ function performLogin(loginUrl) {
 async function performLogout() {
     await solidClientAuthentication.logout();
 }
+
+function gatherData(bookmark) {
+
+    
+
+}
 /*
 async function performTaskCreation(description) {
     // Data discovery mechanisms are still being defined in Solid, but so far it is clear that
