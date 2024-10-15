@@ -53,7 +53,7 @@ function performLogin(loginUrl) {
     solidClientAuthentication.login({
         oidcIssuer: loginUrl,
         redirectUrl: window.location.href,
-        clientName: 'Hello World',
+        clientName: 'eighteenlix',
     });
 }
 
