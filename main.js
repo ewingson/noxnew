@@ -12,11 +12,11 @@ async function main() {
     document.getElementById('username').innerHTML = `<a href="${user.url}" target="_blank">${user.name}</a>`;
     document.getElementById('auth-user').removeAttribute('hidden');
 
-    const tasks = await loadTasks();
+   /* const tasks = await loadTasks();
 
     for (const task of tasks) {
         appendTaskItem(task);
-    }
+    } */
 }
 
 function login() {
