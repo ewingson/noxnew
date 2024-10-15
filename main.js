@@ -38,35 +38,8 @@ async function logout() {
     document.getElementById('logout-button').removeAttribute('disabled');
 }
 
-async function createTask() {
-    const description = prompt('Task description');
 
-    if (!description)
-        return;
-
-    const task = await performTaskCreation(description);
-
-    appendTaskItem(task);
-}
-
-async function updateTask(taskUrl, button) {
-    const done = button.innerText === 'Complete';
-    button.setAttribute('disabled', '');
-
-    await performTaskUpdate(taskUrl, done);
-
-    button.removeAttribute('disabled');
-    button.innerText = done ? 'Undo' : 'Complete';
-}
-
-async function deleteTask(taskUrl, taskElement, button) {
-    button.setAttribute('disabled', '');
-
-    await performTaskDeletion(taskUrl);
-
-    taskElement.remove();
-}
-
+/*
 function appendTaskItem(task) {
     const taskItem = document.createElement('li');
 
@@ -89,7 +62,7 @@ function appendTaskItem(task) {
 
     document.getElementById('tasks').appendChild(taskItem);
 }
-
+*/
 // ------------------------------------------------------------------
 
 main();
