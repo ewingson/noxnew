@@ -1,4 +1,5 @@
-//skeleton_main
+// skeleton_main_init
+// display function added
 async function main() {
     const user = await restoreSession();
 
@@ -39,6 +40,7 @@ async function logout() {
     document.getElementById('logout-button').removeAttribute('disabled');
 }
 
+// write unordered list in index
 function display(bookmark) {
     document.getElementById('items').appendChild(bookmark);
 }
