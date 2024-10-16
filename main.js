@@ -1,3 +1,4 @@
+//skeleton_main
 async function main() {
     const user = await restoreSession();
 
@@ -37,28 +38,6 @@ async function logout() {
     document.getElementById('auth-user').setAttribute('hidden', '');
     document.getElementById('logout-button').removeAttribute('disabled');
 }
-
-
-/*
-function appendTaskItem(task) {
-    const taskItem = document.createElement('li');
-
-    taskItem.innerHTML = `
-        <button
-            type="button"
-            onclick="deleteTask('${task.url}', this.parentElement, this)"
-        >
-            Delete
-        </button>
-        <button
-            type="button"
-            onclick="updateTask('${task.url}', this)"
-            style="width:100px"
-        >
-            ${task.done ? 'Undo' : 'Complete'}
-        </button>
-        <span>${task.description}</span>
-    `;*/
 
 function display(bookmark) {
     document.getElementById('items').appendChild(bookmark);
