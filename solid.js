@@ -1,4 +1,4 @@
-// we will study sincerely
+// main template solid-work document_resource
 
 let user, bookmarksContainerUrl, bookmark, i;
 
@@ -61,18 +61,12 @@ async function performLogout() {
     await solidClientAuthentication.logout();
 }
 
-function gatherData(bookmark) {
-
-    
+// button click goes here
+function gatherData(bookmark) {  
 
 }
-/*
-    if (!tasksContainerUrl) {
-        await createSolidContainer(user.storageUrl, 'tasks');
 
-        tasksContainerUrl = `${user.storageUrl}tasks/`;
-    }
-*/
+        // tasksContainerUrl = `${user.storageUrl}tasks/`;
 
 /*
     const documentUrl = await createSolidDocument(tasksContainerUrl, `
