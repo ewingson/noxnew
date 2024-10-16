@@ -67,25 +67,14 @@ function gatherData(bookmark) {
 
 }
 /*
-async function performTaskCreation(description) {
-    // Data discovery mechanisms are still being defined in Solid, but so far it is clear that
-    // applications should not hard-code the url of their containers like we are doing in this
-    // example.
-    //
-    // In a real application, you should use one of these two alternatives:
-    //
-    // - The Type index. This is the one that most applications are using in practice today:
-    //   https://github.com/solid/solid/blob/main/proposals/data-discovery.md#type-index-registry
-    //
-    // - SAI, or Solid App Interoperability. This one is still being defined:
-    //   https://solid.github.io/data-interoperability-panel/specification/
-
     if (!tasksContainerUrl) {
         await createSolidContainer(user.storageUrl, 'tasks');
 
         tasksContainerUrl = `${user.storageUrl}tasks/`;
     }
+*/
 
+/*
     const documentUrl = await createSolidDocument(tasksContainerUrl, `
         @prefix schema: <https://schema.org/> .
         <#it>
@@ -93,83 +82,14 @@ async function performTaskCreation(description) {
             schema:actionStatus schema:PotentialActionStatus ;
             schema:description "${escapeText(description)}" .
     `);
-    const taskUrl = `${documentUrl}#it`;
+*/
 
-    return { url: taskUrl, description };
-}
+    // important url triple-predicate name
+    // const taskUrl = `${documentUrl}#it`;
+    // end comment
 
-async function performTaskUpdate(taskUrl, done) {
-    const documentUrl = getSolidDocumentUrl(taskUrl);
-
-    await updateSolidDocument(documentUrl, `
-        DELETE DATA {
-            <#it>
-                <https://schema.org/actionStatus>
-                <https://schema.org/${done ? 'PotentialActionStatus' : 'CompletedActionStatus'}> .
-        } ;
-        INSERT DATA {
-            <#it>
-                <https://schema.org/actionStatus>
-                <https://schema.org/${done ? 'CompletedActionStatus' : 'PotentialActionStatus'}> .
-        }
-    `);
-}
-
-async function performTaskDeletion(taskUrl) {
-    const documentUrl = getSolidDocumentUrl(taskUrl);
-
-    await deleteSolidDocument(taskUrl);
-}
-
-async function loadTasks() {
-    // In a real application, you shouldn't hard-code the path to the container like we're doing here.
-    // Read more about this in the comments on the performTaskCreation function.
-
-    const containerQuads = await readSolidDocument(`${user.storageUrl}tasks/`);
-
-    if (!containerQuads)
-        return [];
-
-    tasksContainerUrl = `${user.storageUrl}tasks/`;
-
-    const tasks = [];
-    const containmentQuads = containerQuads.filter(quad => quad.predicate.value === 'http://www.w3.org/ns/ldp#contains');
-
-    for (const containmentQuad of containmentQuads) {
-        const documentQuads = await readSolidDocument(containmentQuad.object.value);
-        const typeQuad = documentQuads.find(
-            quad =>
-                quad.predicate.value === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' &&
-                quad.object.value === 'https://schema.org/Action'
-        );
-
-        if (!typeQuad) {
-            // Not a Task, we can ignore this document.
-
-            continue;
-        }
-
-        const taskUrl = typeQuad.subject.value;
-        const descriptionQuad = documentQuads.find(
-            quad =>
-                quad.subject.value === taskUrl &&
-                quad.predicate.value === 'https://schema.org/description'
-        );
-        const statusQuad = documentQuads.find(
-            quad =>
-                quad.subject.value === taskUrl &&
-                quad.predicate.value === 'https://schema.org/actionStatus'
-        );
-
-        tasks.push({
-            url: taskUrl,
-            description: descriptionQuad?.object.value || '-',
-            done: statusQuad?.object.value === 'https://schema.org/CompletedActionStatus',
-        });
-    }
-
-    return tasks;
-} */
+    // array
+    // const tasks = [];
 
 async function readSolidDocument(url) {
     try {
@@ -212,14 +132,7 @@ async function updateSolidDocument(url, update) {
     if (!isSuccessfulStatusCode(response.status))
         throw new Error(`Failed updating document at ${url}, returned status ${response.status}`);
 }
-/*
-async function deleteSolidDocument(url) {
-    const response = await solidClientAuthentication.fetch(url, { method: 'DELETE' });
 
-    if (!isSuccessfulStatusCode(response.status))
-        throw new Error(`Failed deleting document at ${url}, returned status ${response.status}`);
-}
-*/
 async function createSolidContainer(url, name) {
     const response = await solidClientAuthentication.fetch(url, {
         method: 'POST',
